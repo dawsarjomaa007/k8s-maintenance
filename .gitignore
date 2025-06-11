@@ -1,122 +1,79 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# Kubernetes Maintenance Tool .gitignore
+# ===========================================
 
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
+# Runtime generated files
 *.log
-local_settings.py
-db.sqlite3
+*.tmp
+*.temp
+audit-*.log
+maintenance-*.log
+cluster-info-*.txt
+resource-dump-*.yaml
+backup-*.tar.gz
+restore-*.tar.gz
 
-# Flask stuff:
-instance/
-.webassets-cache
+# Directories for generated content
+logs/
+temp/
+tmp/
+reports/
+backups/
+dumps/
+output/
+cache/
 
-# Scrapy stuff:
-.scrapy
+# Kubernetes specific files
+kubeconfig-backup-*
+kubeconfig-*.yaml
+cluster-state-*
+node-info-*
+pod-logs-*
+event-logs-*
+audit-logs-*
 
-# Sphinx documentation
-docs/_build/
+# Configuration overrides (keep templates)
+config-local.yaml
+config-prod.yaml
+config-dev.yaml
+config-staging.yaml
+*-local.yaml
+*-override.yaml
+.env.local
+.env.production
+.env.development
 
-# PyBuilder
-target/
+# Secrets and sensitive data
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+*.pfx
+secrets/
+certificates/
+kubeconfig-*
+token-*
+.kube/config-*
+sa-token-*
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# IDE
-.vscode/
-.idea/
+# Shell script runtime artifacts
+*.pid
+*.lock
+.bash_history
+.command_history
 *.swp
 *.swo
+*.orig
 *~
+.#*
+#*#
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-*
+.vim/
+.netrwhist
 
 # OS generated files
 .DS_Store
@@ -124,33 +81,47 @@ dmypy.json
 ._*
 .Spotlight-V100
 .Trashes
+.fseventsd
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 ehthumbs.db
 Thumbs.db
+Desktop.ini
 
-# Logs
-*.log
+# Test output and coverage
+test-results/
+coverage/
+*.coverage
+junit.xml
+test-output/
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
+# Backup files
+*.bak
+*.backup
+*.old
+*~
 
-# Dependency directories
+# Compressed files (unless intentionally versioned)
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Runtime data directories
+pids/
+run/
+var/
+
+# Documentation build artifacts
+docs/_build/
+docs/build/
+site/
+
+# Package manager artifacts
 node_modules/
+vendor/
 
-# Optional npm cache directory
-.npm
-
-# dotenv environment variables file
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Secrets and API keys
-config.ini
-secrets.json
-*.key
-*.pem
+# Local development helpers
+Makefile.local
+docker-compose.override.yml
+.local/
