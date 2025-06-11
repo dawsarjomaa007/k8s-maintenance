@@ -1,0 +1,13 @@
+thresholds:
+  cpu_warning: 80
+  memory_warning: 85
+  disk_warning: 90
+  pod_restart_threshold: 10
+excluded_namespaces:
+  - kube-system
+  - kube-public
+  - kube-node-lease
+retention_days: 7
+log_lines: 1000
+security_checks: true
+auto_cleanup: false
