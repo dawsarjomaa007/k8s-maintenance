@@ -1,0 +1,47 @@
+# Kubernetes Maintenance Tool Configuration - Staging Environment
+# Environment: staging
+# Generated: $(date)
+
+environment: staging
+
+cluster:
+  name: "staging-cluster"
+  context: "staging-k8s"
+  region: "us-west-2"
+
+thresholds:
+  cpu_warning: 75
+  memory_warning: 80
+  disk_warning: 85
+  pod_restart_threshold: 8
+
+excluded_namespaces:
+  - kube-system
+  - kube-public
+  - kube-node-lease
+  - cert-manager
+  - ingress-nginx
+
+retention_days: 7
+log_lines: 1000
+security_checks: true
+auto_cleanup: false
+
+backup:
+  enabled: true
+  retention_count: 3
+  storage_path: "/var/backups/k8s-maintenance"
+
+alerts:
+  enabled: true
+  webhook_url: "https://hooks.slack.com/services/staging/webhook"
+  channels: ["#k8s-staging-alerts"]
+
+timeouts:
+  kubectl_timeout: 30
+  drain_timeout: 300
+  health_check_timeout: 60
+
+# Staging-specific settings
+approval_required: true
+change_window: "02:00-04:00"

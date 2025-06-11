@@ -1,0 +1,62 @@
+# Kubernetes Maintenance Tool Configuration - Production Environment
+# Environment: production
+# Generated: $(date)
+
+environment: production
+
+cluster:
+  name: "prod-cluster"
+  context: "production-k8s"
+  region: "us-west-2"
+
+thresholds:
+  cpu_warning: 85
+  memory_warning: 90
+  disk_warning: 95
+  pod_restart_threshold: 15
+
+excluded_namespaces:
+  - kube-system
+  - kube-public
+  - kube-node-lease
+  - cert-manager
+  - ingress-nginx
+  - monitoring
+  - logging
+  - istio-system
+
+retention_days: 30
+log_lines: 2000
+security_checks: true
+auto_cleanup: false
+
+backup:
+  enabled: true
+  retention_count: 10
+  storage_path: "/var/backups/k8s-maintenance"
+
+alerts:
+  enabled: true
+  webhook_url: "${SLACK_WEBHOOK_URL}"
+  channels: ["#k8s-prod-alerts", "#ops-critical"]
+
+timeouts:
+  kubectl_timeout: 60
+  drain_timeout: 600
+  health_check_timeout: 120
+
+# Production-specific settings
+approval_required: true
+change_window: "01:00-03:00"
+confirmation_required: true
+audit_logging: true
+readonly_mode: false
+
+# Security settings
+rbac_checks: true
+pod_security_standards: true
+network_policy_checks: true
+
+# Compliance
+change_tracking: true
+compliance_mode: "SOC2"

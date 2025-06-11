@@ -1,0 +1,46 @@
+# Kubernetes Maintenance Tool Configuration - Development Environment
+# Environment: development
+# Generated: $(date)
+
+environment: development
+
+cluster:
+  name: "dev-cluster"
+  context: "kind-dev"
+  region: "local"
+
+thresholds:
+  cpu_warning: 70
+  memory_warning: 75
+  disk_warning: 80
+  pod_restart_threshold: 5
+
+excluded_namespaces:
+  - kube-system
+  - kube-public
+  - kube-node-lease
+  - local-path-storage
+
+retention_days: 3
+log_lines: 500
+security_checks: false
+auto_cleanup: true
+
+backup:
+  enabled: false
+  retention_count: 2
+  storage_path: "/tmp/k8s-maintenance-backup"
+
+alerts:
+  enabled: false
+  webhook_url: ""
+  channels: []
+
+timeouts:
+  kubectl_timeout: 15
+  drain_timeout: 120
+  health_check_timeout: 30
+
+# Development-specific settings
+debug_mode: true
+verbose_logging: true
